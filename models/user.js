@@ -26,12 +26,14 @@ const userSchema = new Schema({
 userSchema.post("save", handleMongooseError)
 
 const registerSchema = Joi.object({
-    email: Joi.string().email().required().unique(),
+    email: Joi.string().email().required(),
+    // .unique()
     password: Joi.string().min(6).required()
 })
 
 const loginSchema = Joi.object({
-    email: Joi.string().email().required().unique(),
+    email: Joi.string().email().required(),
+    // .unique()
     password: Joi.string().min(6).required()
 })
 
