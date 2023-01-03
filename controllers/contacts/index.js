@@ -5,12 +5,12 @@ const deleteById = require("./deleteById")
 const updateById = require("./updateById")
 const updateFavorite = require("./updateFavorite")
 
+
 module.exports = {
     getAll,
     getById,
     add,
     deleteById,
     updateById,
-    updateFavorite
-
+    updateFavorite,
 }
