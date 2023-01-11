@@ -14,7 +14,7 @@ const updateAvatar = async (req, res) => {
     const filename = `${_id}_${originalname}`
     console.log("filename", `${filename}`)
     const resultUpload = path.join(avatarDir, filename)
-    console.log("resultUpload", `${resultUpload}`)
+    console.log("resultUpload", `small-${resultUpload}`)
 
 //     Jimp.read(filename , (_, name) => {
 //         name
@@ -40,7 +40,7 @@ const updateAvatar = async (req, res) => {
         .then(avatar => {
             return avatar
             .resize(250, 250) // resize
-            .write(`${filename}-small.jpg`); // save
+            .write(`public/avatars/small-${filename}`); // save
         })
         .catch(err => {
             console.error(err);
@@ -48,7 +48,7 @@ const updateAvatar = async (req, res) => {
     
     console.log("image", `${image}`)
 
-    const avatarURL = path.join("avatars", image)
+    const avatarURL = path.join("avatars", `small-${filename}`)
     console.log("avatarURL", `${avatarURL}`)
     await User.findByIdAndUpdate(_id, { avatarURL })
     
