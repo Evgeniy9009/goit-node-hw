@@ -2,11 +2,17 @@ const express = require("express")
 
 const ctrl = require("../../controllers/auth")
 const { ctrlWrapper } = require("../../helpers")
-const { validateBody, authenticate, upload } = require("../../middlewares")
+const { validateBody, authenticate, upload , passport} = require("../../middlewares")
 
 const {schemas} = require("../../models/user")
 
 const router = express.Router()
+
+router.get("/google", passport.authenticate("google", {
+    scope: ["email", "profile"]
+}))
+
+router.get("/google/callback", passport.authenticate("google", {session: false}), ctrlWrapper(ctrl.google))
 
 // signup
 router.post("/register", validateBody(schemas.registerSchema), ctrlWrapper(ctrl.register))
